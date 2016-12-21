@@ -19,3 +19,7 @@ Run tor using the folowing syntax from your terminal window:
 sandbox-exec -f torbrowser.sb /Applications/TorBrowser.app/Contents/MacOS/firefox
 
 You can also put the sandbox-exec command in a script to be executed via Desktop Icon.
+
+## More info
+For more info check my original post on my blog here: https://paolozaino.wordpress.com/2015/10/20/maximum-security-and-privacy-using-mac-os-sandbox-and-tor-browser-bundle/
+
