@@ -1,0 +1,102 @@
+;; Tor WEB Browser Bundle sandbox
+;; by Paolo Fabio Zaino
+;; License GPL v2
+;; Get this file and hack it to perfection ;)
+(version 1)
+(debug deny)
+
+;; allow processes to traverse symlinks
+(allow file-read-metadata)
+
+(allow file-read-data file-read-metadata
+  (regex
+    ; Allow reading system dylibs and frameworks
+    #"^/usr/lib/.*\.dylib$"
+    #"^/usr/lib/info/.*\.so$"
+    #"^/System/"
+    #"^/private/var/db/dyld/"
+    #"^(/private)?/etc/hosts\.(allow|deny)$"
+  ))
+
+(allow file-read-data file-write-data
+  (regex
+    ; Allow files accessed by system dylibs and frameworks
+    #"^/dev/null$"
+    #"^(/private)?/var/run/syslog$"
+    #"^/dev/u?random$"
+    #"^/dev/autofs_nowait$"
+    #"^/dev/dtracehelper$"
+    #"/\.CFUserTextEncoding$"
+    #"^(/private)?/etc/localtime$"
+    #"^/usr/share/nls/"
+    #"^/usr/share/zoneinfo/"
+  ))
+
+(allow file-ioctl
+  (regex
+    ; Allow access to dtracehelper by dyld
+    #"^/dev/dtracehelper$"))
+
+(allow mach-lookup
+  (global-name "com.apple.bsd.dirhelper")
+  (global-name "com.apple.system.DirectoryService.libinfo_v1")
+  (global-name "com.apple.system.DirectoryService.membership_v1")
+  (global-name "com.apple.system.logger")
+  (global-name "com.apple.system.notification_center"))
+
+(allow ipc-posix-shm) ; Libnotify
+
+;; (allow sysctl-read)
+
+(allow signal (target self))
+ 
+(deny default)
+
+(allow file-write* file-read-data file-read-metadata
+  (regex "^/Users/<your-username>/Downloads")
+  (regex "^/Users/<your-username>/Library/Application Support/Mozilla")
+  (regex "^/Users/<your-username>/Library/Application Support/Firefox")
+  (regex "^/Users/<your-username>/Library/Preferences")
+  (regex "^/Users/<your-username>/Library/PreferencePanes")
+  (regex "^/Users/<your-username>/Library/Caches/Firefox")
+  (regex "^/Users/<your-username>/Library/Caches/TemporaryItems")
+  (regex "^/Users/<your-username>/Library/Application Support/TorBrowser-Data/")
+  (regex "^/Library/Application Support/CrashReporter")
+  (regex "^/Applications/TorBrowser.app")
+  (regex "^(/private)?/tmp/"))
+
+(allow file-read-data file-read-metadata
+  (regex "^/dev/autofs.*")
+  (regex "^/Library/Preferences")
+  (regex "^/Library/Fonts")
+  (regex "^/Library/Internet Plug-Ins")
+  (regex "^/Library/PreferencePanes")
+  (regex "^/usr/share/icu")
+  (regex "^/usr/share/locale")
+  (regex "^/System/Library")
+  (regex "^/Applications/TorBrowser.app")
+  (regex "^/usr/lib")
+  (regex "^/usr/local/lib")
+  (regex "^/var")
+  (regex "^/private/var/tmp/")
+  (regex "^/private/tmp/")
+  (regex "^/Users/<your-username>")
+  (regex #"Frameworks/SDL.framework"))
+ 
+(allow mach* sysctl-read)
+
+(deny file-write-data
+   (regex #"^(/private)?/etc/localtime$"
+     #"^/usr/share/nls/"
+	 #"^/usr/share/zoneinfo/"))
+
+;; (allow process-exec* 
+;;  (regex "^/Applications/TorBrowser.app"))
+
+(allow process-exec*)
+  
+(allow network*)
+(allow iokit-open)
+(allow ipc-posix-shm)
+(allow process-fork)
+
