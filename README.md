@@ -12,16 +12,25 @@ Please help me to improve this script with your suggestions and changes, thanks!
 
 ## Usage
 
-Download torbrowser.sb on your Mac and replace all instances of <your-username> with your username on your Mac.
+1) Download torbrowser.sb on your Mac and replace all instances of < your-username > in torbrowser.sb with your username on your Mac, for example:
 
-Download latest tor browser bundle from this link: https://www.torproject.org/download/download
+   Replace < your-username > with john
 
-Run tor using the folowing syntax from your terminal window:
+   Please Note: if the operation above results too difficult for you then it means you need to learn how to use your Mac and a text editor more before attempting to use projects like tbms.
 
-sandbox-exec -f torbrowser.sb /Applications/TorBrowser.app/Contents/MacOS/firefox
+2) Download latest tor browser bundle from this link: https://www.torproject.org/download/download
 
-You can also put the sandbox-exec command in a script to be executed via Desktop Icon.
+3) Run tor using the folowing syntax from your terminal window:
+
+   sandbox-exec -f torbrowser.sb /Applications/TorBrowser.app/Contents/MacOS/firefox
+
+   You can also put the sandbox-exec command in a script to be executed via Desktop Icon.
 
 ## More info
+
+Please Note that each new release of the TOR Browser bundle may try to use different directory patch or resources and so you may get error messages that will require you to modify the torbrowser.sb script in order to address the specific issue.
+
+In some cases it may be required also to change some configuration parameter on the browser itself. To access Browser configuration type about:config in the URL field and search for the specific parameter that is causing problems when the browser is executed inside a sandbox.
+
 For more info check my original post on my blog here: https://paolozaino.wordpress.com/2015/10/20/maximum-security-and-privacy-using-mac-os-sandbox-and-tor-browser-bundle/
 
