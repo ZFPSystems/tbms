@@ -28,7 +28,7 @@ Please help me to improve this script with your suggestions and changes, thanks!
 
 ## More info
 
-Please Note that each new release of the TOR Browser bundle may try to use different directory patch or resources and so you may get error messages that will require you to modify the torbrowser.sb script in order to address the specific issue.
+Please Note: Each new release of the TOR Browser bundle may try to use/access different directory paths or resources and so you may get error messages that will require you to modify the torbrowser.sb script in order to address the specific issue.
 
 In some cases it may be required also to change some configuration parameter on the browser itself. To access Browser configuration type about:config in the URL field and search for the specific parameter that is causing problems when the browser is executed inside a sandbox.
 
